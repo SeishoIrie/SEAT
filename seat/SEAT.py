@@ -33,7 +33,7 @@ from BeautifulSoup import BeautifulSoup
 
 from __init__ import __version__
 from utils import *
-from mtTkinter import *
+#wu#from mtTkinter import *
 
 try:
     import gettext
@@ -168,7 +168,7 @@ class SEAT(OpenRTM_aist.DataFlowComponentBase):
         self.init_state = None
         self.gui_buttons = {}
         self.frames = {}
-        self.root = Tk()
+        #wu#self.root = Tk()
 
     def onInitialize(self):
         OpenRTM_aist.DataFlowComponentBase.onInitialize(self)
@@ -188,8 +188,8 @@ class SEAT(OpenRTM_aist.DataFlowComponentBase):
                     a.join()
         except:
             self._logger.RTC_ERROR(traceback.format_exc())
-        if self.gui_flag:
-            self.root.quit()
+        #wu#if self.gui_flag:
+            #wu#self.root.quit()
 
         return RTC.RTC_OK
 
@@ -364,9 +364,9 @@ class SEAT(OpenRTM_aist.DataFlowComponentBase):
                 self.stateTransfer(self.statestack.pop())
             else:
                 self._logger.RTC_INFO("state transition from "+self.currentstate+" to "+data)
-                if self.gui_flag:
-                    self.hide_frame(self.currentstate)
-                    self.show_frame(data)
+                #wu#if self.gui_flag:
+                    #wu#self.hide_frame(self.currentstate)
+                    #wu#self.show_frame(data)
                 self.stateTransfer(data)
         elif c[0] == 'l':
             data = c[1]
@@ -538,7 +538,7 @@ class SEAT(OpenRTM_aist.DataFlowComponentBase):
 
             for s in doc.findall('state'):
                 name = s.get('name')
-                self.frames[name] = Frame(self.root)
+                #wu#self.frames[name] = Frame(self.root)
                 self.buttons[name]=[]
                 if self.init_state == None:
                     self.init_state = name
@@ -759,8 +759,8 @@ class SEATManager:
             self.manager.runManager(True)
             for st in self.comp.states:
                 self.comp.create_gui(st)
-            self.comp.show_frame(self.comp.init_state)
-            self.comp.root.mainloop()
+            #wu#self.comp.show_frame(self.comp.init_state)
+            #wu#self.comp.root.mainloop()
         else:
             self.manager.runManager(False)
         #if opts.guimode == True:
